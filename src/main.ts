@@ -36,16 +36,16 @@ const zoneNames = [
 ];
 
 const zoneColors = [
-  "rgba(225,180,93,.13)",
-  "rgba(139,188,255,.13)",
-  "rgba(108,226,167,.12)",
-  "rgba(198,161,255,.13)",
-  "rgba(255,115,115,.12)",
-  "rgba(255,255,255,.07)",
-  "rgba(134,231,255,.11)",
-  "rgba(255,203,139,.12)",
-  "rgba(221,139,255,.12)",
-  "rgba(145,255,192,.10)"
+  "#f3d894",
+  "#e9b694",
+  "#cfe4c3",
+  "#f1cfaa",
+  "#d9c0ea",
+  "#f6e6b2",
+  "#c8dde8",
+  "#ead39b",
+  "#e7b9c4",
+  "#d6d5a8"
 ];
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
@@ -240,7 +240,7 @@ function renderCell(r: number, c: number): string {
   const answer = cell.answer !== null ? `<span class="token">${cell.answer}</span><span>${personLabel(cell.answer)}</span>` : `<span class="cell-meta">Toca para ${mode === "answer" ? "colocar" : mode === "note" ? "marcar" : "borrar"}</span>`;
   const solution = revealSolution && expected ? `<span class="cell-meta">Solución: ${expected.name}</span>` : "";
   const notes = [...cell.notes].map(n => `<span class="note">${personLabel(n)}</span>`).join("");
-  return `<button class="${classes.join(" ")}" style="background:linear-gradient(135deg, ${zoneColor}, transparent 75%), #151923" data-r="${r}" data-c="${c}">
+  return `<button class="${classes.join(" ")}" style="--zone-bg:${zoneColor}" data-r="${r}" data-c="${c}">
     <span class="zone-label">${zoneLabel(zone)}</span>
     <span>${answer}</span>
     <span class="notes">${notes}</span>
@@ -273,8 +273,10 @@ function render() {
   app.innerHTML = `
     <div class="app">
       <header class="header">
-        <div class="eyebrow">Mi Murdoku · generado con MurdokuGen</div>
-        <h1>Generador de Murdokus</h1>
+        <div class="book-cover">
+          <div class="cover-title">MURDOKU</div>
+          <div class="cover-subtitle">Generador de lógica y asesinatos</div>
+        </div>
         <p class="intro">Crea tableros nuevos, coloca sospechosos, añade marcas y comprueba la solución. Los números de cada sospechoso corresponden a sus pistas.</p>
       </header>
 
